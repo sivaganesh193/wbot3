@@ -1,0 +1,23 @@
+{
+  "name": "wbot3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sivaganesh193/wbot3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sivaganesh193/wbot3/issues"
+  },
+  "homepage": "https://github.com/sivaganesh193/wbot3#readme",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.15.3"
+  }
+}
