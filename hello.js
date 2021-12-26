@@ -29,8 +29,7 @@ client.on('authenticated', (session) => {
 });
 
 client.on('message', async (msg) => {
-    if(msg.from === '919842066955-1608209695@g.us' || msg.from === '919940558752-1562156168@g.us') {
-        // console.log(msg.body);
+    if(msg.from === '919940558752-1562156168@g.us') {
     console.log(msg.from, msg.body);
         // if(msg.body === '!everyone') {
     //     const chat = await msg.getChat();
@@ -67,6 +66,9 @@ client.on('message', async (msg) => {
             const media = MessageMedia.fromFilePath('ttimg.jpg');
             await chat.sendMessage(media);
         }
+    }
+    if(msg.from === '120363040090543612@g.us') {
+        await msg.reply('Bot Test msg');
     }
 });
 
