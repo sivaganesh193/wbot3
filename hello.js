@@ -29,27 +29,25 @@ client.on('authenticated', (session) => {
 });
 
 client.on('message', async (msg) => {
-    if(msg.from === '919940558752-1562156168@g.us') {
-    console.log(msg.from, msg.body);
-        // if(msg.body === '!everyone') {
-    //     const chat = await msg.getChat();
-        
-    //     let text = "";
-    //     let mentions = [];
+    if(msg.from === '919940558752-1562156168@g.us' || msg.from === '120363021301172938@g.us') {
+        console.log(msg.from, msg.body);
+        if(msg.body === '!everyone') {
+            const chat = await msg.getChat();
+            let text = "";
+            let mentions = [];
 
-    //     for(let participant of chat.participants) {
-    //         const contact = await client.getContactById(participant.id._serialized);
-            
-    //         mentions.push(contact);
-    //         text += `@${participant.id.user} `;
-    //     }
-
-    //     await chat.sendMessage(text, { mentions });
-    // }
-    // if(msg.body === 'sivaganesh') {
-    //     const chat = await msg.getChat();
-    //     await chat.sendMessage('hi');
-    // }
+            for(let participant of chat.participants) {
+                const contact = await client.getContactById(participant.id._serialized);
+                
+                mentions.push(contact);
+                text += `@${participant.id.user} `;
+            }
+            await chat.sendMessage(text, { mentions });
+        }
+        if(msg.body === 'sivaganesh') {
+            const chat = await msg.getChat();
+            await chat.sendMessage('hi');
+        }
         if(msg.body === '!yourmom') {
             const chat = await msg.getChat();
             await chat.sendMessage('Arshu is gay!');
@@ -62,9 +60,12 @@ client.on('message', async (msg) => {
             await msg.reply('Saroja');
         }
         if(msg.body === '!tt') {
-            const chat = await msg.getChat();
             const media = MessageMedia.fromFilePath('ttimg.jpg');
-            await chat.sendMessage(media);
+            await msg.reply(media);
+        }
+        if(msg.body === '!arshad'){
+            const chat = await msg.getChat();
+            await chat.sendMessage('If you are gay Arshad is your bae');
         }
     }
     if(msg.from === '120363040090543612@g.us') {
