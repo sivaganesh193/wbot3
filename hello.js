@@ -1,6 +1,7 @@
 const qrcode = require('qrcode-terminal');
 const { Client,MessageMedia } = require('whatsapp-web.js');
 const fs = require('fs');
+const { M } = require('qrcode-terminal/vendor/QRCode/QRErrorCorrectLevel');
 const SESSION_FILE_PATH = './session.json';
 let sessionData;
 
@@ -28,48 +29,71 @@ client.on('authenticated', (session) => {
     });
 });
 
-client.on('message', async (msg) => {
-    if(msg.from === '919940558752-1562156168@g.us' || msg.from === '120363021301172938@g.us') {
-        console.log(msg.from, msg.body);
-        if(msg.body === '!everyone') {
-            const chat = await msg.getChat();
-            let text = "";
-            let mentions = [];
+client.on('message_create', async (msg) => {
+    
+    // if(msg.body === '!everyone') {
+    //     const chat = await msg.getChat();
+    //     let text = "";
+    //     let mentions = [];
 
-            for(let participant of chat.participants) {
-                const contact = await client.getContactById(participant.id._serialized);
-                
-                mentions.push(contact);
-                text += `@${participant.id.user} `;
-            }
-            await chat.sendMessage(text, { mentions });
+    //     for(let participant of chat.participants) {
+    //         const contact = await client.getContactById(participant.id._serialized);
+            
+    //         mentions.push(contact);
+    //         text += `@${participant.id.user} `;
+    //     }
+    //     await chat.sendMessage(text, { mentions });
+    // }
+
+    switch(msg.body.toLowerCase()) {
+
+        case 'sivaganesh': {
+
+            const qm = await msg.getQuotedMessage();
+            const replyString = 'eww';
+            qm ? await qm.reply(replyString) : await msg.reply(replyString);
+            break;
         }
-        if(msg.body === 'sivaganesh') {
-            const chat = await msg.getChat();
-            await chat.sendMessage('hi');
+
+        case '!yourmom': {
+
+            const qm = await msg.getQuotedMessage();
+            const replyString = 'your dad';
+            qm ? await qm.reply(replyString) : await msg.reply(replyString);
+            break;
         }
-        if(msg.body === '!yourmom') {
-            const chat = await msg.getChat();
-            await chat.sendMessage('Arshu is gay!');
+
+        case '!sivassri': {
+
+            const qm = await msg.getQuotedMessage();
+            const replyString = '😂😂';
+            qm ? await qm.reply(replyString) : await msg.reply(replyString);
+            break;
         }
-        if(msg.body === '!sivassri') {
-            const chat = await msg.getChat();
-            await chat.sendMessage('😂😂');
+
+        case 'anything imp': {
+
+            const qm = await msg.getQuotedMessage();
+            const replyString = 'Saroja';
+            qm ? await qm.reply(replyString) : await msg.reply(replyString);
+            break;
         }
-        if(msg.body.toLowerCase().includes('anything imp')) {
-            await msg.reply('Saroja');
-        }
-        if(msg.body === '!tt') {
+
+        case '!tt': {
+
             const media = MessageMedia.fromFilePath('ttimg.jpg');
-            await msg.reply(media);
+            const qm = await msg.getQuotedMessage();
+            qm ? await qm.reply(media) : await msg.reply(media);
+            break;
         }
-        if(msg.body === '!arshad'){
-            const chat = await msg.getChat();
-            await chat.sendMessage('If you are gay Arshad is your bae');
+
+        case 'arshad': {
+
+            const qm = await msg.getQuotedMessage();
+            const replyString = 'If you are gay Arshad is your bae';
+            qm ? await qm.reply(replyString) : await msg.reply(replyString);
+            break;
         }
-    }
-    if(msg.from === '120363040090543612@g.us') {
-        await msg.reply('Bot Test msg');
     }
 });
 
